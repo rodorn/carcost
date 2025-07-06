@@ -83,7 +83,7 @@ export default function CarCostCalculator() {
         if (data.fuelType === "diesel") fuelMultiplier = 1.6;
 
 // FORMUŁA końcowa:
-        const averageKm = (totalKm+data.mileage)/2;
+        const averageKm = (totalKm+2*data.mileage)/2;
         const reliabilityFactor =
             ((data.complexity + 1) *
                 (averageKm < 200000
@@ -314,6 +314,7 @@ export default function CarCostCalculator() {
                             <div>Km rocznie w mieście: {result.breakdown.kmCityYear}</div>
                             <div>Km rocznie w trasie: {result.breakdown.kmHighwayYear}</div>
                             <div>Łączny przebieg w okresie: {result.breakdown.totalKm} km</div>
+                            <div>Końcowy przebieg: {result.breakdown.totalKm+data.mileage} km</div>
                             <div>Koszt paliwa: {result.breakdown.fuelCost.toFixed(2)} PLN</div>
                             <div>Spadek wartości: {result.breakdown.lostValue.toFixed(2)} PLN</div>
                             <div>Awaryjność (średnia): {result.breakdown.reliabilityFactor.toFixed(2)} × 1000 × {data.yearsOwned} = {result.breakdown.repairs.toFixed(2)} PLN</div>
