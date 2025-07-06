@@ -63,7 +63,7 @@ export default function CarCostCalculator() {
 
         const ageStart = 2025 - data.year;
         const ageEnd = ageStart + data.yearsOwned;
-        const lostValue = data.price * (1.05-((ageStart + 6)/(ageEnd+6)));
+        const lostValue = data.price * (1.05-((ageStart + 3)/(ageEnd+3)));
 
         let engineMultiplier = 1;
         switch (data.engine) {
@@ -83,10 +83,21 @@ export default function CarCostCalculator() {
         if (data.fuelType === "diesel") fuelMultiplier = 1.6;
 
 // FORMUŁA końcowa:
+        const averageKm = (totalKm+data.mileage)/2;
         const reliabilityFactor =
-            ((data.complexity + 1) * data.brandReliability + data.engineReliability) *
-            engineMultiplier *
-            fuelMultiplier / 100;
+            ((data.complexity + 1) *
+                (averageKm < 200000
+                    ? Math.max(0, data.brandReliability - (data.brandReliability - 1) * ((200000 - averageKm) / 200000))
+                    : data.brandReliability)
+            ) +
+            (
+                (averageKm < 300000
+                        ? Math.max(0, data.engineReliability - (data.engineReliability - 1) * ((300000 - averageKm) / 300000))
+                        : data.engineReliability
+                ) *
+                engineMultiplier *
+                fuelMultiplier / 50
+            );
 
         const totalKmCity = kmCityYear * data.yearsOwned;
         const totalKmHighway = kmHighwayYear * data.yearsOwned;
