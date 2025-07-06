@@ -85,7 +85,7 @@ export default function CarCostCalculator() {
 // FORMUŁA końcowa:
         const averageKm = (totalKm+2*data.mileage)/2;
         const reliabilityFactor =
-            ((data.complexity + 1) *
+            (((data.complexity + 1) *
                 (averageKm < 200000
                     ? Math.max(0, data.brandReliability - (data.brandReliability - 1) * ((200000 - averageKm) / 200000))
                     : data.brandReliability)
@@ -96,8 +96,8 @@ export default function CarCostCalculator() {
                         : data.engineReliability
                 ) *
                 engineMultiplier *
-                fuelMultiplier / 50
-            );
+                fuelMultiplier
+            ))/50;
 
         const totalKmCity = kmCityYear * data.yearsOwned;
         const totalKmHighway = kmHighwayYear * data.yearsOwned;
