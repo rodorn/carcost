@@ -63,7 +63,7 @@ export default function CarCostCalculator() {
 
         const ageStart = 2025 - data.year;
         const ageEnd = ageStart + data.yearsOwned;
-        const lostValue = data.price * (1.1-((ageStart + 3)/(ageEnd+3)));
+        const lostValue = data.price * (1.05-((ageStart + 6)/(ageEnd+6)));
 
         let engineMultiplier = 1;
         switch (data.engine) {
