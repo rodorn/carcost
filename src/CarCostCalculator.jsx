@@ -317,7 +317,7 @@ export default function CarCostCalculator() {
                             <div>Końcowy przebieg: {result.breakdown.totalKm+data.mileage} km</div>
                             <div>Koszt paliwa: {result.breakdown.fuelCost.toFixed(2)} PLN</div>
                             <div>Spadek wartości: {result.breakdown.lostValue.toFixed(2)} PLN</div>
-                            <div>Awaryjność (średnia): {result.breakdown.reliabilityFactor.toFixed(2)} × 1000 × {data.yearsOwned} = {result.breakdown.repairs.toFixed(2)} PLN</div>
+                            <div>Serwis: {result.breakdown.repairs.toFixed(2)} PLN</div>
                         </CardContent>
                     </Card>
                 </>
